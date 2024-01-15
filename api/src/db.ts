@@ -95,7 +95,6 @@ Licencia.hasOne(Documentacion);
 Documentacion.belongsTo(Licencia, {
   foreignKey: {
     name: 'id_licencia',
-    allowNull: false,
   }
 });
 
@@ -103,7 +102,6 @@ Medico.hasMany(Licencia);
 Licencia.belongsTo(Medico, {
   foreignKey: {
     name: 'id_medico',
-    allowNull: false,
   }
 });
 

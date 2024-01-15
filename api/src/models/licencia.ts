@@ -1,7 +1,7 @@
 import { Sequelize, DataTypes, Model } from 'sequelize';
 
 export default function defineModel(sequelize: Sequelize) {
-  sequelize.define("Licencia", {
+  sequelize.define("licencia", {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -11,9 +11,23 @@ export default function defineModel(sequelize: Sequelize) {
       type: DataTypes.UUID,
       allowNull: false,
     },
-    id_medico: {
+    id_empresa: {
       type: DataTypes.UUID,
       allowNull: false,
+    },
+    id_sector: {
+      type: DataTypes.UUID,
+      allowNull: false
+    },
+    direccion: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    coordenadas: {
+      type: DataTypes.STRING
+    },
+    id_medico: {
+      type: DataTypes.UUID,
     },
     solicitada: {
       type: DataTypes.DATE,
@@ -21,19 +35,15 @@ export default function defineModel(sequelize: Sequelize) {
     },
     revisada: {
       type: DataTypes.DATE,
-      allowNull: false,
     },
     otorgada:{
       type: DataTypes.BOOLEAN,
-      allowNull: false, 
     },
     validez:{
-      type: DataTypes.ENUM("24", "48", "72"), // según propositos de la empresa
-      allowNull: false
+      type: DataTypes.ENUM("24", "48", "72"), // según propositos de la empresa,
     },
     derivacion:{
       type: DataTypes.BOOLEAN,
-      allowNull: false
     },
     id_documentacion: {
     type: DataTypes.UUID,
