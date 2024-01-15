@@ -1,7 +1,7 @@
 import { Sequelize, DataTypes, Model } from 'sequelize';
 
 export default function defineModel(sequelize: Sequelize) {
-  sequelize.define("Sector", {
+  sequelize.define("sector", {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
