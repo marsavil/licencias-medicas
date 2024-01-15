@@ -28,7 +28,7 @@ export default function defineModel(sequelize: Sequelize) {
       allowNull: false, 
     },
     validez:{
-      type: DataTypes.ENUM("24", "48", "72"),
+      type: DataTypes.ENUM("24", "48", "72"), // según propositos de la empresa
       allowNull: false
     },
     derivacion:{

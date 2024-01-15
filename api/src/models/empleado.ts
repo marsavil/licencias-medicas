@@ -28,6 +28,5 @@ export default function defineModel(sequelize: Sequelize)  {
       type: DataTypes.DATE,
       allowNull: false,
     },
-
   });
 };

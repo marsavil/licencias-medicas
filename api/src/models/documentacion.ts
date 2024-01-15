@@ -14,7 +14,6 @@ export default function defineModel(sequelize: Sequelize) {
     id_licencia:{
       type: DataTypes.UUID,
       allowNull: false,
-      
     },
   });
 };

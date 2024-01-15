@@ -7,7 +7,7 @@ import path from 'path';
 const app = express();
 
 // middlewares
-app.use(morgan('dev')) //para mostrar las peticiones en consola
+app.use(morgan('dev')) 
 app.use(express.json())
 
 // routes

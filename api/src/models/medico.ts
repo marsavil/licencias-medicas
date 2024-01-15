@@ -8,13 +8,12 @@ export default function defineModel(sequelize: Sequelize) {
       primaryKey: true,
     },
     name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING, 
       allowNull: false,
     },
     surname: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    
   });
 };

@@ -8,7 +8,7 @@ export default function defineModel(sequelize: Sequelize) {
       primaryKey: true,
     },
     name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING, //puede ser cambiado a ENUM una vez determinados los sectores
       allowNull: false,
     },
   });
