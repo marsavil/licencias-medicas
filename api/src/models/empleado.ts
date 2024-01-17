@@ -18,17 +18,29 @@ export default function defineModel(sequelize: Sequelize)  {
     telefono:{
       type: DataTypes.STRING,
     },
-    id_sector: {
+    dni: {
+      type: DataTypes.STRING,
+      allowNull:false
+    },
+    sectorId: {
       type: DataTypes.UUID,
       allowNull: false,
       
     },
-    id_empresa: {
+    empresaId: {
       type: DataTypes.UUID,
       allowNull: false,
     },
     alta: {
       type: DataTypes.DATE,
     },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    active:{
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
+    }
   });
 };

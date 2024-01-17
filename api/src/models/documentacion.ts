@@ -11,7 +11,7 @@ export default function defineModel(sequelize: Sequelize) {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    id_licencia:{
+    licenciaID:{
       type: DataTypes.UUID,
     },
   });
