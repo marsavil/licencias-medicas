@@ -63,4 +63,4 @@ const medicos = {
     }
   }
 }
-export default medicos;
+export default medicos; 
