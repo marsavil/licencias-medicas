@@ -1,11 +1,17 @@
 import { Router } from 'express';
-import licencias from './licencias'
-import devTests from './testing'
+import licencias from './licencias';
+import empleados from './empleados';
+import empresas from './empresas';
+import medicos from './medicos';
+import sectores from './sectores'
 
 const router = Router();
 //aqui comenzare a definir las rutas
-router.use("/licencia", licencias)
-router.use("/test", devTests)
+router.use("/licencia", licencias);
+router.use('/empleados', empleados);
+router.use('/empresas',empresas);
+router.use('/medicos', medicos);
+router.use('/sectores', sectores);
 
 
 export default router;

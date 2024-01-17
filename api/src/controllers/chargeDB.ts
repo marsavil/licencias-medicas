@@ -1,84 +1,78 @@
 import { Request, Response } from "express";
+import * as bcrypt from "bcrypt";
 const {
   Empleado,
   Empresa,
-  Licencia,
   Sector,
-  Documentacion,
   Medico,
 } = require("../db");
+const ROUNDS = Number(process.env.ROUNDS);
 
 const charge = {
-  cargarEmpleados: async function (req: Request, res: Response) {
-    try {
-      const { name, surname, telefono, sector, empresa } = req.body;
-      const area = await Sector.findOne({
-        where: {
-          name: sector,
-        },
-      });
-      const jobPlace = await Empresa.findOne({
-        where: {
-          name: empresa,
-        },
-      });
-      Empleado.create({
-        name,
-        surname,
-        telefono,
-        id_sector: area.id,
-        id_empresa: jobPlace.id,
-      });
-
-      return res.status(200).send("Empleado cargado correctamente");
-    } catch (error: any) {
-      return res.status(400).send(error);
-    }
-  },
-  cargarEmpresa: async function (req: Request, res: Response) {
-    try {
-      await Empresa.create({
-        name: "Mars Avil",
-      });
-      return res.status(200).send("empresa cargada");
-    } catch (error) {
-      return res.status(400).send(error);
-    }
-  },
-  eliminarEmpresa: async function (req: Request, res: Response){
-    const { id } = req.body
-    console.log("eliminar")
-    await Empresa.destroy({
-      where: {
-        id
-      }
-    })
-    return res.status(200).send("empresa eliminada")
-  },
-  cargarSectores: async function (req: Request, res: Response) {
-    console.log("se inicia la carga de sectores");
-    const sectores = ["Administración", "Taller", "Logistica", "Limpieza"];
-    sectores.forEach((s) => {
-      console.log("se va a cargar el sector");
-      Sector.create({
-        name: s,
-      });
-      console.log(`se cargo el sector ${s}`);
-    });
-    return res.status(200).send("Sectores cargados correctamente");
-  },
-  verSectores: async function (res: Response) {
+  cargaDevDB: async function () {
+    const empresa = await Empresa.findAll();
     const sectores = await Sector.findAll();
-    return res.status(200).send(sectores);
-  },
-  cargarMedicos: async function (req: Request, res: Response) {
-    try {
-      Medico.create({
-        name: "Carmen",
-        surname: "Losada",
+    const medico = await Medico.findAll();
+    const empleado = await Empleado.findAll();
+
+    // carga empresa inicial para desarrollo
+    if (empresa.length === 0) {
+      await Empresa.create({
+        name: "Empresa 1",
       });
-    } catch (error) {
-      return res.status(400).send(error);
+      console.log("empresa cargada");
+    } else {
+      console.log("empresa previamente cargada");
+    }
+    // carga inicial de sectores para desarrollo
+
+    if (sectores.length === 0) {
+      const sections = ["Administración", "Taller", "Logistica", "Limpieza"];
+      for (let i = 0; i < sections.length; i++) {
+        await Sector.create({
+          name: sections[i],
+        });
+        console.log(`se cargo el sector ${sections[i]}`);
+      }
+    } else {
+      console.log("Sectores cargados previamente")
+    }
+
+    // carga inicial de medico para desarrollo
+
+    if (medico.length === 0) {
+      const hashed = await bcrypt.hash("12345678", ROUNDS);
+      await Medico.create({
+        name: "Médico",
+        surname: "Uno",
+        dni: "12345678",
+        password: hashed,
+      });
+      console.log("Profesional médico agregado exitosamente");
+    } else {
+      console.log("medico cargado previamente")
+    }
+
+    // carga empleado inicial para desarrollo
+
+    if (empleado.length === 0) {
+      const sections = await Sector.findAll();
+      const firms = await Empresa.findAll();
+      const hashed = await bcrypt.hash("12345678", ROUNDS);
+      sections && firms
+        ? Empleado.create({
+            name: "Empleado",
+            surname: "Uno",
+            dni: "12345678",
+            telefono: "12345678",
+            sectorId: sections[0].id,
+            empresaId: firms[0].id,
+            password: hashed
+          })
+        : console.log("No es posible encontra la empresa o el sector indicado");
+      console.log("Empleado agreagado correctamente");
+    } else {
+      console.log("empleado cargado previamente")
     }
   },
 };

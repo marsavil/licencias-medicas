@@ -70,7 +70,7 @@ const { Empleado, Empresa, Documentacion, Licencia, Medico, Sector } = sequelize
 Empresa.hasMany(Empleado);
 Empleado.belongsTo(Empresa, {
   foreignKey: {
-    name: 'id_empresa',
+    name: 'empresaId',
     allowNull: false,
   }
 });
@@ -78,7 +78,7 @@ Empleado.belongsTo(Empresa, {
 Sector.hasMany(Empleado);
 Empleado.belongsTo(Sector, {
   foreignKey: {
-    name: 'id_sector',
+    name: 'sectorId',
     allowNull: false,
   }
 });
@@ -86,7 +86,7 @@ Empleado.belongsTo(Sector, {
 Empleado.hasMany(Licencia);
 Licencia.belongsTo(Empleado, {
   foreignKey: {
-    name: 'id_empleado',
+    name: 'empleadoId',
     allowNull: false,
   }
 }); 
@@ -94,14 +94,14 @@ Licencia.belongsTo(Empleado, {
 Licencia.hasOne(Documentacion);
 Documentacion.belongsTo(Licencia, {
   foreignKey: {
-    name: 'id_licencia',
+    name: 'licenciaId',
   }
 });
 
 Medico.hasMany(Licencia);
 Licencia.belongsTo(Medico, {
   foreignKey: {
-    name: 'id_medico',
+    name: 'medicoId',
   }
 });
 

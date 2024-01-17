@@ -7,15 +7,15 @@ export default function defineModel(sequelize: Sequelize) {
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    id_empleado: {
+    empleadoId: {
       type: DataTypes.UUID,
       allowNull: false,
     },
-    id_empresa: {
+    empresaId: {
       type: DataTypes.UUID,
       allowNull: false,
     },
-    id_sector: {
+    sectorId: {
       type: DataTypes.UUID,
       allowNull: false
     },
@@ -26,7 +26,7 @@ export default function defineModel(sequelize: Sequelize) {
     coordenadas: {
       type: DataTypes.STRING
     },
-    id_medico: {
+    medicoId: {
       type: DataTypes.UUID,
     },
     solicitada: {
@@ -45,7 +45,7 @@ export default function defineModel(sequelize: Sequelize) {
     derivacion:{
       type: DataTypes.BOOLEAN,
     },
-    id_documentacion: {
+    documentacionId: {
     type: DataTypes.UUID,
     allowNull: false,
     }

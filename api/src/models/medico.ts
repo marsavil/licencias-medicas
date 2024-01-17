@@ -15,5 +15,18 @@ export default function defineModel(sequelize: Sequelize) {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    dni: {
+      type: DataTypes.STRING,
+      allowNull:false
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }, 
+    active: {
+      type: DataTypes.BOOLEAN,
+      allowNull:false,
+      defaultValue:true
+    }
   });
 };
