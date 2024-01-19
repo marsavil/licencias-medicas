@@ -43,7 +43,8 @@ const empleados = {
               telefono,
               sectorId: section.id,
               empresaId: firm.id,
-              password: hashed
+              password: hashed,
+              level: "Low"
             })
           : res
               .status(400)

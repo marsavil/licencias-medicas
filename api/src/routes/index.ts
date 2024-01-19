@@ -4,7 +4,8 @@ import empleados from './empleados';
 import empresas from './empresas';
 import medicos from './medicos';
 import sectores from './sectores';
-import telefono from './telefono'
+import telefono from './telefono';
+import sesion from './sesion';
 
 const router = Router();
 //aqui comenzare a definir las rutas
@@ -13,7 +14,8 @@ router.use('/empleados', empleados);
 router.use('/empresas',empresas);
 router.use('/medicos', medicos);
 router.use('/sectores', sectores);
-router.use('/telefono', telefono)
+router.use('/telefono', telefono);
+router.use('/sesion', sesion)
 
 
 export default router;

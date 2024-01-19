@@ -36,6 +36,7 @@ const medicos = {
           surname,
           dni,
           password: hashed,
+          level: "Mid"
         });
         return res.status(200).send({message: "Profesional médico agregado exitosamente", data: created});
       } else {

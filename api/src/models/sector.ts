@@ -9,6 +9,7 @@ export default function defineModel(sequelize: Sequelize) {
     },
     name: {
       type: DataTypes.STRING, //puede ser cambiado a ENUM una vez determinados los sectores
+      //type: DataTypes.ENUM('value', 'another value')
       allowNull: false,
     },
   });
