@@ -5,6 +5,7 @@ const {
   Empresa,
   Sector,
   Medico,
+  Admin
 } = require("../db");
 const ROUNDS = Number(process.env.ROUNDS);
 
@@ -14,6 +15,7 @@ const charge = {
     const sectores = await Sector.findAll();
     const medico = await Medico.findAll();
     const empleado = await Empleado.findAll();
+    const admin = await Admin.findAll();
 
     // carga empresa inicial para desarrollo
     if (empresa.length === 0) {
@@ -37,16 +39,29 @@ const charge = {
     } else {
       console.log("Sectores cargados previamente")
     }
+    // carga inicial Administrador
+    if ( admin.length === 0 ){
+      const hashed = await bcrypt.hash("admin", ROUNDS);
+      await Admin.create({
+        name: "admin",
+        password: hashed,
+        level: "High"
+      })
+      console.log("Administrador agregado exitosamente");
+    } else {
+      console.log("Administrador cargado previamente")
+    }
 
     // carga inicial de medico para desarrollo
 
     if (medico.length === 0) {
-      const hashed = await bcrypt.hash("12345678", ROUNDS);
+      const hashed = await bcrypt.hash("12345679", ROUNDS);
       await Medico.create({
         name: "Médico",
         surname: "Uno",
-        dni: "12345678",
+        dni: "12345679",
         password: hashed,
+        level: "Mid"
       });
       console.log("Profesional médico agregado exitosamente");
     } else {
@@ -67,9 +82,10 @@ const charge = {
             telefono: "12345678",
             sectorId: sections[0].id,
             empresaId: firms[0].id,
-            password: hashed
+            password: hashed,
+            level: "Low"
           })
-        : console.log("No es posible encontra la empresa o el sector indicado");
+        : console.log("No es posible encontrar la empresa o el sector indicado");
       console.log("Empleado agreagado correctamente");
     } else {
       console.log("empleado cargado previamente")

@@ -1,7 +1,7 @@
 import { Sequelize, DataTypes, Model } from 'sequelize';
 
 export default function defineModel(sequelize: Sequelize) {
-  sequelize.define("medico", {
+  sequelize.define("admin", {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -11,13 +11,9 @@ export default function defineModel(sequelize: Sequelize) {
       type: DataTypes.STRING, 
       allowNull: false,
     },
-    surname: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    dni: {
-      type: DataTypes.STRING,
-      allowNull:false
+    level: {
+      type: DataTypes.ENUM("High", "Mid", "Low" ),
+      allowNull: false
     },
     password: {
       type: DataTypes.STRING,
@@ -28,9 +24,5 @@ export default function defineModel(sequelize: Sequelize) {
       allowNull:false,
       defaultValue:true
     },
-    level: {
-      type: DataTypes.ENUM("High", "Mid", "Low" ),
-      allowNull: false
-    }
-  });
-};
+  })
+}

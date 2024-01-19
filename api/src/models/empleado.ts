@@ -41,6 +41,10 @@ export default function defineModel(sequelize: Sequelize)  {
     active:{
       type: DataTypes.BOOLEAN,
       defaultValue: true
+    },
+    level: {
+      type: DataTypes.ENUM("High", "Mid", "Low" ),
+      allowNull: false
     }
   });
 };
