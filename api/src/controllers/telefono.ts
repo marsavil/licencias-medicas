@@ -34,8 +34,8 @@ const telefono = {
         client.verify.v2
           .services(SERVICE_SID)
           .verificationChecks.create({ to: phone, code })
-          .then((verification_check: { status: any }) => {
-            return res.status(200).send(verification_check.status);
+          .then((verification_check: any) => {
+            return res.status(200).send(verification_check);
           });
       } else {
         res.status(400).send("Debe ingresar el código que recibio por SMS");
